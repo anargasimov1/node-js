@@ -18,9 +18,9 @@ class UserService {
 
             const dto = new userDto(newUser);
             const token = TokenService.generateToken({ ...dto });
-            const info = new userInfo(newUser);
 
-            return { token, info };
+            TokenService.saveToken(newUser, token);
+            return { token, dto };
         } catch (error) {
             console.log(error.message);
         }
@@ -37,7 +37,7 @@ class UserService {
     async upDate(id, name) {
         try {
             const upDateUser = await user.findByIdAndUpdate(id, name);
-            return upDateUser && null;
+            return upDateUser || null;
         } catch (error) {
             console.log(err);
         }

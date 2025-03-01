@@ -1,5 +1,7 @@
 const service = require('../service/UserService');
 const user = require('../models/UserModels');
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 class UserController {
   async registration(req, res, next) {
@@ -15,10 +17,13 @@ class UserController {
     }
   }
 
-  async gelAllUsers(req, res, next) {
+
+  async gelAllUsers(req, res) {
+   
     try {
+     
       const users = await service.getUsers();
-      res.json(users);
+      res.json(users)
     } catch (error) {
       res.json({ message: error.message })
     }

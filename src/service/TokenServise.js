@@ -1,12 +1,17 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config()
+require('dotenv').config();
+const tokenModel = require('../models/tokenModel')
 
 
 class TokenService {
     generateToken(payload) {
 
-        const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "10m" });
+        const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "40m" });
         return token;
+    }
+
+    async saveToken(user, token) {
+        await tokenModel.create({ user, token })
     }
 }
 
