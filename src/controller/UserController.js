@@ -18,10 +18,8 @@ class UserController {
   }
 
 
-  async gelAllUsers(req, res) {
-   
+  async getAllUsers(req, res) {
     try {
-     
       const users = await service.getUsers();
       res.json(users)
     } catch (error) {
@@ -32,8 +30,9 @@ class UserController {
   async UpDate(req, res) {
     try {
       const id = req.params.id;
-      const name = req.body;
-      const upDatedUser = await service.upDate(id, name);
+      const user = req.body;
+      console.log(user)
+      const upDatedUser = await service.upDate(id, user);
       res.json(upDatedUser);
     } catch (error) {
       res.json({ message: error.message });

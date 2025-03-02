@@ -34,9 +34,9 @@ class UserService {
         }
     }
 
-    async upDate(id, name) {
+    async upDate(id, user) {
         try {
-            const upDateUser = await user.findByIdAndUpdate(id, name);
+            const upDateUser = await user.findByIdAndUpdate(id, user);
             return upDateUser || null;
         } catch (error) {
             console.log(err);
